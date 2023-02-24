@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import basicRed from "../reducers";
+import MainReducer from "../reducers";
 
 const rootReducer = combineReducers({
-  redBasic: basicRed,
+  redBasic: MainReducer,
 });
 
 const store = configureStore({

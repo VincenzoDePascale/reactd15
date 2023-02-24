@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const SingleCard = (props) => {
-  const Dispatch = useDispatch();
   const song = useSelector((state) => state.redBasic.song);
+  const [singleSong, setSingleSong] = useState();
+
   const MainFetch = async () => {
     try {
       const response = await fetch(
@@ -12,7 +13,7 @@ const SingleCard = (props) => {
       );
       if (response.ok) {
         const data = await response.json();
-        Dispatch({ type: "ADD_IN_MAIN", payload: data.data });
+        setSingleSong(data.data[0]);
       }
     } catch (err) {
       console.log(err);
@@ -23,29 +24,41 @@ const SingleCard = (props) => {
     MainFetch();
   }, []);
 
+  console.log("props", props);
+  console.log("singleSong", singleSong);
   return (
     <>
-      <div className="col text-center" key={song.id}>
-        <Link /* to=`/album_page.html?id=${song.album.id}` */>
-          <img class="img-fluid" src={song.album?.cover_medium} alt="1" />
-        </Link>
-        <p>
-          <Link /* to="/album_page.html?id=${element.album.id}" */>
-            Album:
-            {song.album?.title?.length < 16
-              ? `${song.album?.title}`
-              : `${song.album?.title.substring(0, 16)}...`}
+      {singleSong && (
+        <div className="col text-center" key={singleSong.id}>
+          <Link to={`/album/${singleSong.id}`}>
+            <img
+              class="img-fluid"
+              src={singleSong.album?.cover_medium}
+              alt="1"
+            />
           </Link>
+          <p>
+            <Link to={`"/album/${singleSong.album.id}"`}>
+              Album:
+              {singleSong.album?.title?.length < 16
+                ? `${singleSong.album?.title}`
+                : `${singleSong.album?.title.substring(0, 16)}...`}
+            </Link>
 
-          {/*  <br> */}
+            <br />
 
-          <Link /* to="/artist_page.html?id=${element.artist.id}" */>
-            Artist: ${song.artist?.name}
-          </Link>
-        </p>
-      </div>
+            <Link to={`/artist/${singleSong.id}`}>
+              Artist: {singleSong.artist?.name}
+            </Link>
+          </p>
+        </div>
+      )}
     </>
   );
 };
 
 export default SingleCard;
+
+{
+  /*  */
+}

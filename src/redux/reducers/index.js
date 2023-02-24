@@ -1,6 +1,8 @@
 const initialState = {
-  song: {},
+  song: [],
   rockClassic: ["queen", "metallica", "oasis", "acdc"],
+  popCulture: ["madonna", "mannarino", "jovanotti", "adele"],
+  hipHop: ["eminem", "rihanna", "snoopdog", "celeste"],
 };
 
 const MainReducer = (state = initialState, action) => {
@@ -8,7 +10,7 @@ const MainReducer = (state = initialState, action) => {
     case "ADD_IN_MAIN":
       return {
         ...state,
-        song: action.paylod,
+        song: [...state.song, action.paylod],
       };
 
     default:
