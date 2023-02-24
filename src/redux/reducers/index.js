@@ -1,5 +1,5 @@
 const initialState = {
-  song: [],
+  song: {},
   rockClassic: ["queen", "metallica", "oasis", "acdc"],
 };
 

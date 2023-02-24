@@ -25,22 +25,22 @@ const SingleCard = (props) => {
 
   return (
     <>
-      <div class="col text-center" id={song.id}>
+      <div className="col text-center" key={song.id}>
         <Link /* to=`/album_page.html?id=${song.album.id}` */>
-          <img class="img-fluid" src={song.album.cover_medium} alt="1" />
+          <img class="img-fluid" src={song.album?.cover_medium} alt="1" />
         </Link>
         <p>
           <Link /* to="/album_page.html?id=${element.album.id}" */>
-            Album:{" "}
-            {song.album.title.length < 16
-              ? `${song.album.title}`
-              : `${song.album.title.substring(0, 16)}...`}
+            Album:
+            {song.album?.title?.length < 16
+              ? `${song.album?.title}`
+              : `${song.album?.title.substring(0, 16)}...`}
           </Link>
 
           {/*  <br> */}
 
           <Link /* to="/artist_page.html?id=${element.artist.id}" */>
-            Artist: ${song.artist.name}
+            Artist: ${song.artist?.name}
           </Link>
         </p>
       </div>

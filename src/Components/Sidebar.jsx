@@ -60,7 +60,7 @@ const Sidebar = () => {
                         className="btn btn-outline-secondary btn-sm"
                         type="button"
                         id="button-addon1"
-                        onClick="search()"
+                        /* onClick="search()" */
                       >
                         GO
                       </button>
