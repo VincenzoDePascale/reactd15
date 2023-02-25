@@ -1,6 +1,37 @@
 import Topbar from "./Topbar";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const Artist = () => {
+  const params = useParams();
+  const [artist, setArtist] = useState();
+
+  const ArtistFetch = async () => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${params.id}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setArtist(data);
+      } else {
+        console.log("artist errore in if");
+      }
+    } catch (err) {
+      console.log("artist err in catch");
+    }
+  };
+
+  useEffect(() => {
+    ArtistFetch();
+  }, []);
+
+  console.log("artist params", params);
+
+  console.log("artist data:", artist);
+
+  //TODO artist esiste ed è quello che ti serve, ma devi continuare, è un lavoro fatto a metà? forse devi fare una seconda fetch?
+
   return (
     <>
       <div className="col-12 col-md-9 offset-md-3 mainPage">

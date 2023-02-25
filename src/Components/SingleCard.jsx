@@ -32,13 +32,13 @@ const SingleCard = (props) => {
         <div className="col text-center" key={singleSong.id}>
           <Link to={`/album/${singleSong.id}`}>
             <img
-              class="img-fluid"
+              className="img-fluid"
               src={singleSong.album?.cover_medium}
               alt="1"
             />
           </Link>
           <p>
-            <Link to={`"/album/${singleSong.album.id}"`}>
+            <Link to={`/album/${singleSong.album.id}`}>
               Album:
               {singleSong.album?.title?.length < 16
                 ? `${singleSong.album?.title}`
@@ -47,7 +47,10 @@ const SingleCard = (props) => {
 
             <br />
 
-            <Link to={`/artist/${singleSong.id}`}>
+            <Link
+              to={`/artist/${singleSong.artist.id}`}
+              element={singleSong.artist.id}
+            >
               Artist: {singleSong.artist?.name}
             </Link>
           </p>
@@ -58,7 +61,3 @@ const SingleCard = (props) => {
 };
 
 export default SingleCard;
-
-{
-  /*  */
-}

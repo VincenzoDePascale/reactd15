@@ -14,7 +14,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/album:id" element={<Album />} />
+          <Route path="/album/:id" element={<Album />} />
           <Route path="/artist/:id" element={<Artist />} />
         </Routes>
         <Footer />
