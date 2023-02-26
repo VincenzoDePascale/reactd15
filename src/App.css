@@ -99,6 +99,7 @@ ul {
 
 .playerControls a img {
   width: 14px;
+  margin-right: 1rem;
   margin-top: 1rem;
   filter: brightness(60%);
 }

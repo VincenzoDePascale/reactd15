@@ -1,6 +1,6 @@
 import { FaHome } from "react-icons/fa";
 import { BsFillBookFill } from "react-icons/bs";
-
+import Logo from "../assets/Spotify_Logo.png";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -12,12 +12,7 @@ const Sidebar = () => {
       >
         <div className="nav-container">
           <a className="navbar-brand" href="index.html">
-            <img
-              src="./assets/spotify_Logo.png"
-              alt="Spotify_Logo"
-              width="131"
-              height="40"
-            />
+            <img src={Logo} alt="Spotify_Logo" width="131" height="40" />
           </a>
           <button
             className="navbar-toggler"

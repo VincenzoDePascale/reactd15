@@ -1,11 +1,15 @@
 import Topbar from "./Topbar";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Album = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   const [album, setAlbum] = useState();
   const [songs, setSongs] = useState();
+  const like = useSelector((state) => state.redBasic.like);
 
   const AlbumFetch = async () => {
     try {
@@ -23,6 +27,7 @@ const Album = () => {
       console.log("album errore in catch");
     }
   };
+  console.log("liked", like);
 
   useEffect(() => {
     AlbumFetch();
@@ -56,24 +61,46 @@ const Album = () => {
               <div className="col-md-10 mb-5" id="trackList">
                 {songs &&
                   songs.map((e) => (
-                    <div class="py-3 trackHover">
-                      <Link
-                        href="#"
-                        class="card-title trackHover px-3"
-                        style={{ color: "white" }}
-                      >
-                        {e?.title}
-                      </Link>
-                      <small class="duration" style={{ color: "white" }}>
-                        {Math.floor(
-                          parseInt(e?.duration) / 60 // setting the duration minutes
-                        )}
-                        :
-                        {parseInt(e?.duration) % 60 < 10
-                          ? "0" + (parseInt(e?.duration) % 60) // checking che duration seconds, if they are less than 10 a 0 is prefixed
-                          : parseInt(e?.duration) % 60}
-                      </small>
-                    </div>
+                    <>
+                      <div class="py-3 trackHover d-flex justify-content-between">
+                        <Link
+                          href="#"
+                          className="card-title trackHover px-3 col-10"
+                          style={{ color: "white" }}
+                          onClick={() =>
+                            dispatch({ type: "ADD_TO_PLAYER", payload: e })
+                          }
+                        >
+                          {e?.title}
+                        </Link>
+                        <p
+                          className="col-1"
+                          onClick={() =>
+                            dispatch({ type: "LIKE", payload: e.id })
+                          }
+                        >
+                          <AiOutlineHeart
+                            style={{
+                              color: like.map((a) =>
+                                a === e.id ? "green" : "white"
+                              ),
+                            }}
+                          />
+                        </p>
+                        <small
+                          className="duration col-1"
+                          style={{ color: "white" }}
+                        >
+                          {Math.floor(
+                            parseInt(e?.duration) / 60 // setting the duration minutes
+                          )}
+                          :
+                          {parseInt(e?.duration) % 60 < 10
+                            ? "0" + (parseInt(e?.duration) % 60) // checking che duration seconds, if they are less than 10 a 0 is prefixed
+                            : parseInt(e?.duration) % 60}
+                        </small>
+                      </div>
+                    </>
                   ))}
               </div>
             </div>
