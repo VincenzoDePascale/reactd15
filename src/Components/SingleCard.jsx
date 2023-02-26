@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 const SingleCard = (props) => {
-  const song = useSelector((state) => state.redBasic.song);
   const [singleSong, setSingleSong] = useState();
 
   const MainFetch = async () => {
@@ -24,8 +22,6 @@ const SingleCard = (props) => {
     MainFetch();
   }, []);
 
-  console.log("props", props);
-  console.log("singleSong", singleSong);
   return (
     <>
       {singleSong && (
@@ -47,10 +43,7 @@ const SingleCard = (props) => {
 
             <br />
 
-            <Link
-              to={`/artist/${singleSong.artist.id}`}
-              element={singleSong.artist.id}
-            >
+            <Link to={`/artist/${singleSong.artist.name}`}>
               Artist: {singleSong.artist?.name}
             </Link>
           </p>

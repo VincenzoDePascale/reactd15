@@ -1,6 +1,6 @@
 const initialState = {
   song: [],
-  rockClassic: ["queen", "metallica", "oasis", "acdc"],
+  rockClassic: ["queen", "metallica", "oasis", "coldpaly"],
   popCulture: ["madonna", "mannarino", "jovanotti", "adele"],
   hipHop: ["eminem", "rihanna", "snoopdog", "celeste"],
 };

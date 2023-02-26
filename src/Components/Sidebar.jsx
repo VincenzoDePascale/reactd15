@@ -1,6 +1,8 @@
 import { FaHome } from "react-icons/fa";
 import { BsFillBookFill } from "react-icons/bs";
 
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <div className="col-2">
@@ -32,9 +34,9 @@ const Sidebar = () => {
             <div className="navbar-nav">
               <ul>
                 <li>
-                  <a className="nav-item nav-link" href="index.html">
+                  <Link className="nav-item nav-link" to="/">
                     <FaHome className="fas FaHome fa-lg"></FaHome>&nbsp; Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="nav-item nav-link" href="alt">
